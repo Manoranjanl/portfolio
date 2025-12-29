@@ -1,13 +1,679 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+/* =========================================================
+   Recruiter-Safe Portfolio Styles
+   Clean • Simple • Single-Column Projects
+========================================================= */
+
+/* ------------------------------
+   Theme Variables
+--------------------------------*/
+:root {
+  --bg: #f8fafc;
+  --bg-alt: #ffffff;
+  --card-bg: #ffffff;
+  --accent: #2563eb;
+  --accent-soft: rgba(37, 99, 235, 0.12);
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --border-subtle: #e2e8f0;
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 8px 18px rgba(15, 23, 42, 0.08);
+}
+body.dark {
+  --bg: #0b1220;
+  --bg-alt: #0f172a;
+  --card-bg: #0f172a;
+  --accent: #38bdf8;
+  --accent-soft: rgba(56, 189, 248, 0.12);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border-subtle: rgba(148, 163, 184, 0.18);
+  --shadow-soft: 0 10px 22px rgba(0, 0, 0, 0.35);
+}
+/* ================================
+   DARK MODE NAV FIX
+================================ */
+body.dark header {
+  background: rgba(11, 18, 32, 0.92) !important;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18) !important;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body.dark .nav-name {
+  color: var(--text-main) !important;
+}
+
+body.dark .nav-tagline {
+  color: var(--text-muted) !important;
+}
+
+/* Center links readable in dark */
+body.dark .nav-links a {
+  color: rgba(229, 231, 235, 0.72) !important;
+}
+
+body.dark .nav-links a:hover {
+  color: var(--text-main) !important;
+}
+
+/* Theme toggle button should match dark header */
+body.dark .theme-toggle {
+  background: rgba(15, 23, 42, 0.65) !important;
+  border-color: rgba(148, 163, 184, 0.22) !important;
+  color: var(--text-main) !important;
+}
+
+body.dark .theme-toggle:hover {
+  border-color: var(--accent) !important;
+}
+
+/* CTA button stays visible in dark */
+body.dark .nav-cta-btn {
+  background: var(--accent) !important;
+  color: #0b1220 !important; /* works better with cyan accent */
+}
+
+/* ------------------------------
+   Reset
+--------------------------------*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--bg);
+  color: var(--text-main);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ------------------------------
+   Layout
+--------------------------------*/
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  width: min(1120px, 100% - 2rem);
+  margin-inline: auto;
+}
+
+section {
+  padding: 4rem 0;
+}
+
+main {
+  flex: 1;
+}
+
+/* ------------------------------
+   Header & Navigation (FIXED)
+--------------------------------*/
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(248, 250, 252, 0.96);
+  border-bottom: 1px solid var(--border-subtle);
+  backdrop-filter: blur(8px);
+}
+
+.nav {
+  display: flex;
+  align-items: center; /* ✅ vertical centering */
+  justify-content: space-between;
+  height: 64px; /* ✅ consistent height */
+}
+
+/* LEFT */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.nav-logo-circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+
+.nav-tagline {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
+
+/* CENTER LINKS */
+.nav-links {
+  display: none;
+  align-items: center;
+  gap: 1.6rem;
+  font-size: 0.95rem;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+}
+
+.nav-links a:hover {
+  color: var(--text-main);
+}
+
+/* RIGHT */
+.nav-right {
+  display: flex;
+  align-items: center; /* ✅ aligns button + toggle */
+  gap: 0.75rem;
+}
+
+/* CTA */
+.nav-cta-btn {
+  height: 36px;
+  padding: 0 1.25rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-cta-btn:hover {
+  opacity: 0.95;
+}
+
+/* THEME TOGGLE (FIXED ALIGNMENT) */
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+  display: flex; /* ✅ center icon */
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  line-height: 1; /* ✅ prevents vertical drift */
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+  .nav-links {
+    display: flex;
+  }
+}
+
+/* ------------------------------
+   Hero
+--------------------------------*/
+.hero {
+  padding-top: 3rem;
+}
+
+.hero-grid {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 3fr 2fr;
+    align-items: center;
+  }
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.8rem;
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 70rem;
+  margin-bottom: 1.5rem;
+  line-height: ;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+
+.btn {
+  padding: 0.65rem 1.2rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.btn-primary:hover {
+  opacity: 0.95;
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+}
+.hero-links {
+  display: flex;
+  gap: 0.9rem; /* ✅ spacing between links */
+  flex-wrap: wrap;
+}
+
+.hero-links a {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.hero-links a:hover {
+  color: var(--text-main);
+  border-color: var(--accent);
+}
+
+/* ------------------------------
+   Section Headings
+--------------------------------*/
+.section-heading {
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.section-description {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  max-width: 42rem;
+}
+
+/* ------------------------------
+   Cards
+--------------------------------*/
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+}
+
+/* ------------------------------
+   About
+--------------------------------*/
+.about-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1.6fr 1.4fr;
+  }
+}
+/* About text spacing */
+.about-text {
+  font-size: 0.95rem;
+  line-height: 1.65; /* ✅ comfortable reading */
+  color: var(--text-main);
+}
+
+.about-text + .about-text {
+  margin-top: 0.9rem; /* ✅ space between paragraphs */
+}
+/* About highlights (right card) */
+.about-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem; /* ✅ vertical spacing between rows */
+}
+
+.about-highlight {
+  display: flex;
+  flex-direction: column; /* ✅ label above value */
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.about-highlight strong {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.about-highlight span {
+  color: var(--text-muted);
+}
+
+/* ------------------------------
+   Skills spacing & readability
+--------------------------------*/
+
+/* Section spacing already good — tighten text rhythm */
+.skills-grid {
+  gap: 1.25rem; /* slightly more breathing room */
+}
+
+/* Individual skill cards */
+.skills-grid .card {
+  padding: 1.6rem 1.6rem; /* more internal space */
+  margin-bottom: 1rem;
+}
+
+/* Skill category title */
+.skills-grid h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.65rem; /* ✅ space below title */
+  line-height: 1.25;
+}
+
+/* Skill text */
+.skills-grid p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.65; /* ✅ better line gaps */
+  max-width: 100%;
+}
+
+/* Optional: wrap long lists nicely */
+.skills-grid p span {
+  display: inline-block;
+  margin-right: 0.4rem;
+}
+/* ------------------------------
+   Education spacing & hierarchy
+--------------------------------*/
+
+/* Education card container */
+.education-card {
+  padding: 1.8rem 1.9rem; /* more breathing room */
+}
+
+/* Degree title */
+.education-card h3 {
+  font-size: 1.25rem;
+  font-weight: 750;
+  margin-bottom: 0.55rem; /* space below title */
+  line-height: 1.3;
+}
+
+/* University + date */
+.education-meta {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+/* GPA */
+.education-gpa {
+  font-size: 0.95rem;
+  margin-bottom: 0.9rem; /* clear separation */
+}
+
+/* Coursework label */
+.education-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+/* Coursework list text */
+.education-courses {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.65; /* ✅ readable line gaps */
+  max-width: 56rem;
+}
+
+/* =========================================================
+   PROJECTS — SINGLE COLUMN (THIS IS THE FIX)
+========================================================= */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* ✅ ALWAYS ONE COLUMN */
+  gap: 1.5rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  margin-left: 6.5rem;
+  margin-right: 6.5rem;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.project-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.project-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+}
+
+.project-tech {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+}
+
+.project-list {
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.project-list li {
+  margin-bottom: 0.4rem;
+}
+
+.project-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+/* ------------------------------
+   How I Work – spacing & rhythm
+--------------------------------*/
+
+/* Grid spacing */
+.faq-grid {
+  gap: 1.4rem; /* more breathing room between cards */
+}
+
+/* Card padding */
+.faq-grid .card {
+  padding: 1.7rem 1.8rem; /* comfortable interior spacing */
+  margin-bottom: 1rem;
+}
+
+/* Question title */
+.faq-question {
+  font-size: 1.05rem;
+  font-weight: 750;
+  line-height: 1.35;
+  margin-bottom: 0.6rem; /* space before answer */
+}
+
+/* Answer text */
+.faq-answer {
+  font-size: 0.95rem;
+  line-height: 1.65; /* ✅ readable paragraph spacing */
+  color: var(--text-muted);
+}
+
+/* ------------------------------
+   Contact – clean spacing (no form)
+--------------------------------*/
+
+.contact-card {
+  max-width: 80rem; /* keeps it readable */
+  padding: 1.9rem 2rem;
+
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Intro text */
+.contact-intro {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-bottom: 1.4rem;
+}
+
+/* Contact list */
+.contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* ✅ vertical spacing */
+  padding: 0;
+  margin: 0;
+}
+
+.contact-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Labels */
+.contact-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+/* Links */
+.contact-list a {
+  font-size: 0.95rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.contact-list a:hover {
+  text-decoration: underline;
+}
+/* ------------------------------
+   Footer – spacing & clarity
+--------------------------------*/
+footer {
+  border-top: 1px solid var(--border-subtle);
+  padding: 1.6rem 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: var(--bg-alt);
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem; /* ✅ vertical spacing on mobile */
+}
+
+@media (min-width: 768px) {
+  .footer-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.footer-left {
+  line-height: 1.5; /* ✅ clean text rhythm */
+}
+
+.footer-right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem; /* ✅ spacing between links */
+  align-items: center;
+}
+
+.footer-right a,
+.footer-link-button {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.footer-right a:hover,
+.footer-link-button:hover {
+  color: var(--accent);
 }
