@@ -9,7 +9,8 @@ const App = () => {
   const EMAIL = "manoranjanl8292@gmail.com";
   const LINKEDIN = "https://www.linkedin.com/in/manoranjanl";
   const GITHUB = "https://github.com/manoranjanl";
-  const RESUME_URL = "/Manoranjan_Lakshminarayanappa_Resume.pdf";
+  const RESUME_URL =
+    "https://drive.google.com/file/d/1UWbMVZQrRVeGD0PfbgchbSh0hGzlcYa6/view?usp=share_link";
 
   useEffect(() => {
     const saved = localStorage.getItem("theme");
@@ -342,7 +343,11 @@ const App = () => {
                 </ul>
                 <div className="project-footer">
                   <div className="project-actions">
-                    <a className="btn btn-ghost" href="#" aria-disabled="true">
+                    <a
+                      className="btn btn-ghost"
+                      href="https://github.com/Manoranjanl/Network-Traffic-Analysis#"
+                      aria-disabled="true"
+                    >
                       GitHub (coming soon)
                     </a>
                   </div>

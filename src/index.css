@@ -314,7 +314,7 @@ header {
   padding: 0.35rem 0.7rem;
   border-radius: var(--radius-pill);
   border: 1px solid rgba(148, 163, 184, 0.25);
-  background: rgba(255, 255, 255, 0.35);
+  background: #ffffff;
 }
 
 .hero-links a:hover {
@@ -494,8 +494,8 @@ header {
 .project-card {
   display: flex;
   flex-direction: column;
-  margin-left: 6.5rem;
-  margin-right: 6.5rem;
+  margin-left: 7rem;
+  margin-right: 7rem;
 }
 
 .project-header {
