@@ -6,11 +6,11 @@ import HowIWork from "./components/HowIWork";
 const App = () => {
   const [theme, setTheme] = useState("light"); // ✅ simple default
 
-  const EMAIL = "manoranjanl8292@gmail.com";
+  const EMAIL = "lmanoranjan09@gmail.com";
   const LINKEDIN = "https://www.linkedin.com/in/manoranjanl";
   const GITHUB = "https://github.com/manoranjanl";
   const RESUME_URL =
-    "https://drive.google.com/file/d/1UWbMVZQrRVeGD0PfbgchbSh0hGzlcYa6/view?usp=share_link";
+    "https://drive.google.com/file/d/1ZX5sWnTkaTVYV32EubFfDrasMzqOqr1N/view?usp=sharing";
 
   useEffect(() => {
     const saved = localStorage.getItem("theme");
@@ -95,7 +95,7 @@ const App = () => {
               </div>
 
               <div className="hero-links">
-                <a href="mailto:manoranjanl8292@gmail.com">Email</a>
+                <a href="mailto:lmanoranjan09@gmail.com">Email</a>
                 <a
                   href="https://www.linkedin.com/in/manoranjanl"
                   target="_blank"
@@ -444,8 +444,8 @@ const App = () => {
               <ul className="contact-list">
                 <li>
                   <span className="contact-label">Email</span>
-                  <a href="mailto:manoranjanl8292@gmail.com">
-                    manoranjanl8292@gmail.com
+                  <a href="mailto:lmanoranjan09@gmail.com">
+                    lmanoranjan09@gmail.com
                   </a>
                 </li>
 
@@ -490,7 +490,7 @@ const App = () => {
               Back to top
             </button>
 
-            <a href="mailto:manoranjanl36822@gmail.com">Email</a>
+            <a href="mailto:lmanoranjan09@gmail.com">Email</a>
             <a
               href="https://www.linkedin.com/in/manoranjanl"
               target="_blank"
